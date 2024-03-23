@@ -6,7 +6,7 @@
 
 The goal of this game is to find a key to open a chest. To do this, you will need to open the right doors. Once you have completed your mission, you may escape.
 
-You can find **LPE** on [itch.io](https://octavinavarro.itch.io/midnight-scenes-a-safe-place).
+You can find **LPE** on [itch.io](https://twotinydice.itch.io/pyrene).
 
 The project was licensed under the MIT license in March 2024.
 

@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Exemple de script pour le mouvement du joueur
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
@@ -12,25 +11,36 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        rb.freezeRotation = true; // Empêcher la rotation du Rigidbody
+    }
+
+    private void playerMovement(float moveHorizontal, float moveVertical, float jump)
+    {
+        Vector3 movement = new Vector3(moveHorizontal, 0f, moveVertical).normalized * moveSpeed;
+        rb.MovePosition(rb.position + transform.TransformDirection(movement) * Time.deltaTime);
+
+        if (jump > 0 && Mathf.Abs(rb.velocity.y) < 0.01f)
+        {
+            rb.AddForce(Vector3.up * 5f, ForceMode.Impulse); // Appliquer une force vers le haut pour le saut
+        }
+    }
+
+    private void playerRotation(float mouseX, float mouseY)
+    {
+        float rotationX = transform.localEulerAngles.y + mouseX * sensitivity;
+        float rotationY = transform.localEulerAngles.x - mouseY * sensitivity;
+        transform.localEulerAngles = new Vector3(rotationY, rotationX, 0);
     }
 
     private void FixedUpdate()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
-        float mouseX = Input.GetAxis("Mouse X") * sensitivity;
-        float mouseY = Input.GetAxis("Mouse Y") * sensitivity;
+        float moveHorizontal = Input.GetAxis("Horizontal");
+        float moveVertical = Input.GetAxis("Vertical");
+        float mouseX = Input.GetAxis("Mouse X");
+        float mouseY = Input.GetAxis("Mouse Y");
+        float jump = Input.GetAxis("Jump");
 
-        // Rotation horizontale du joueur (et de la caméra)
-        transform.Rotate(Vector3.up, mouseX);
-
-        // Rotation verticale de la caméra (limitée entre -90 et 90 degrés)
-        float rotationX = -mouseY;
-        rotationX = Mathf.Clamp(rotationX, -90f, 90f);
-        transform.localRotation = Quaternion.Euler(rotationX, transform.localRotation.eulerAngles.y, 0f);
-
-        // Mouvement du joueur
-        Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput) * moveSpeed;
-        rb.MovePosition(rb.position + transform.TransformDirection(movement) * Time.fixedDeltaTime);
+        playerMovement(moveHorizontal, moveVertical, jump);
+        playerRotation(mouseX, mouseY);
     }
 }

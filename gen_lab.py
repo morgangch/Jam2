@@ -4,8 +4,8 @@ from sys import argv
 import math
 import random
 
-lenght = 43
-height = 43
+lenght = 10
+height = 10
 Labyrinth = [ [[0, 0, 0, 0] for i in range(lenght)] for j in range(height)]
 
 def is_explored(cell):

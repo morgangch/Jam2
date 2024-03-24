@@ -19,10 +19,11 @@ public class MainMenu : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "MainScene")
+        if (scene.name == "Main_Scene")
         {
             // Une fois la scène "MainScene" chargée, vous pouvez appeler la génération du labyrinthe ici
-            GenerateLabyrinth();
+            return;
+            //GenerateLabyrinth();
         }
     }
 
@@ -30,7 +31,7 @@ public class MainMenu : MonoBehaviour
     {
         // Vous pouvez ici appeler la fonction pour générer le labyrinthe
         // Assurez-vous que le script LabyrinthGenerator est attaché à un GameObject dans la scène "MainScene"
-        GameObject labyrinthGeneratorObject = GameObject.FindWithTag("LabyrinthGenerator");
+        GameObject labyrinthGeneratorObject = GameObject.Find("LabyrinthGenerator");
         if (labyrinthGeneratorObject != null)
         {
             LabyrinthGenerator labyrinthGenerator = labyrinthGeneratorObject.GetComponent<LabyrinthGenerator>();

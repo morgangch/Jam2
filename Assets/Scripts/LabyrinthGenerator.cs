@@ -3,6 +3,10 @@ using UnityEngine;
 
 public class LabyrinthGenerator : MonoBehaviour
 {
+    public GameObject roomPrefab1; // Préfabriqué de la salle 1 (sans clé, ni coffre, ni spawn)
+    public GameObject roomPrefab2; // Préfabriqué de la salle 2 (avec clé)
+    public GameObject roomPrefab3; // Préfabriqué de la salle 3 (avec coffre)
+    public GameObject roomPrefab4; // Préfabriqué de la salle 4 (avec spawn et porte de sortie)
     public int width = 10;
     public int height = 10;
     private Room[,] labyrinth;
@@ -11,9 +15,9 @@ public class LabyrinthGenerator : MonoBehaviour
     {
         InitializeLabyrinth();
         GenerateLabyrinth(0, 0);
-        // Appelle ici toute méthode supplémentaire pour visualiser le labyrinthe
+        set_start_key_chest();
+        InstantiateRooms();
     }
-
     void InitializeLabyrinth()
     {
         labyrinth = new Room[height, width];
@@ -40,6 +44,8 @@ public class LabyrinthGenerator : MonoBehaviour
 
     bool IsExplored(Room room)
     {
+        if (room == null) return true;
+
         foreach (bool wall in room.walls)
         {
             if (wall) return true;
@@ -85,7 +91,8 @@ public class LabyrinthGenerator : MonoBehaviour
 
     public class Room
     {
-        public bool[] walls = new bool[4]; // Order: N, S, E, W
+        public bool[] walls = new bool[4]; // N, S, E, W
+        public bool[] type = new bool[3]; // Start, Key, Chest
 
         public Room()
         {
@@ -94,5 +101,56 @@ public class LabyrinthGenerator : MonoBehaviour
                 walls[i] = false;
             }
         }
+    }
+    void set_start_key_chest()
+    {
+        int x = Random.Range(0, width);
+        int y = Random.Range(0, height);
+        labyrinth[y, x].type[0] = true;
+        while (labyrinth[y, x].type[0])
+        {
+            x = Random.Range(0, width);
+            y = Random.Range(0, height);
+        }
+        labyrinth[y, x].type[1] = true;
+        while (labyrinth[y, x].type[0] || labyrinth[y, x].type[1])
+        {
+            x = Random.Range(0, width);
+            y = Random.Range(0, height);
+        }
+        labyrinth[y, x].type[2] = true;
+    }
+    void InstantiateRooms()
+    {
+        for (int i = 0; i < height; i++)
+        {
+            for (int j = 0; j < width; j++)
+            {
+                Room room = labyrinth[i, j];
+                GameObject roomPrefab = GetRoomPrefab(room);
+                string[] walls = { "N", "S", "W", "E" };
+                if (roomPrefab != null)
+                {
+                    // Instancier la salle dans la scène principale
+                    GameObject newRoom = Instantiate(roomPrefab, new Vector3(j * 10, 1, i * 10), Quaternion.identity); // 5 is the size of each room, adjust as needed
+                    newRoom.name = "Room_" + i + "_" + j;
+                    for (int k = 0; k < 4; k++)
+                    {
+                        if (room.walls[k])
+                        {
+                            newRoom.transform.Find("Wall_" + walls[k]).gameObject.SetActive(false);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    GameObject GetRoomPrefab(Room room)
+    {
+        if (room.type[0]) return roomPrefab4;
+        if (room.type[1]) return roomPrefab2;
+        if (room.type[2]) return roomPrefab3;
+        return roomPrefab1;
     }
 }

@@ -47,7 +47,7 @@ public class LabyrinthGenerator : MonoBehaviour
         return false;
     }
 
-    void GenerateLabyrinth(int x, int y)
+    public void GenerateLabyrinth(int x, int y)
     {
         List<string> neighbors = GetUnexploredNeighbors(x, y);
 

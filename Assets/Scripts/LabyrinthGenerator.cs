@@ -135,15 +135,14 @@ public class LabyrinthGenerator : MonoBehaviour
                     // Instancier la salle dans la scène principale
                     GameObject newRoom = Instantiate(roomPrefab, new Vector3(j * 10, 1, i * 10), Quaternion.identity); // 5 is the size of each room, adjust as needed
                     newRoom.name = "Room_" + i + "_" + j;
+                    newRoom.SetActive(true);
                     for (int k = 0; k < 4; k++)
                     {
-                        if (room.walls[k])
-                        {
+                        if (room.walls[k]) {
                             newRoom.transform.Find("Wall_" + walls[k]).gameObject.SetActive(false);
                         }
                     }
-                    if (room.type[0])
-                    {
+                    if (room.type[0]) {
                         player.transform.position = new Vector3(j, 1, i);
                     }
                 }

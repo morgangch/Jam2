@@ -1,16 +1,17 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenuUI;
     private static bool _gameIsPaused;
-    private void Start()
+    // Fonction pour trouver tous les GameObjects ayant un script particulier
+    void Start()
     {
+        pauseMenuUI.SetActive(false);
         _gameIsPaused = false;
-        Resume();
     }
-    
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -21,7 +22,6 @@ public class PauseMenu : MonoBehaviour
                 Paused();
         }
     }
-
     void Paused()
     {
         pauseMenuUI.SetActive(true);

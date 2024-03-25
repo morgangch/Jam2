@@ -6,11 +6,18 @@ public class MainMenu : MonoBehaviour
 {
     public string sceneToLoad;
     public GameObject mainMenu;
+
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
     
     public void StartGame()
     {
         SceneManager.LoadSceneAsync(sceneToLoad, LoadSceneMode.Single);
         SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.UnloadSceneAsync("MainMenu");
     }
 
     public void QuitGame()

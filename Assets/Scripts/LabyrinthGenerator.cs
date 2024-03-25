@@ -8,8 +8,8 @@ public class LabyrinthGenerator : MonoBehaviour
     public GameObject roomPrefab3; // Préfabriqué de la salle 3 (avec coffre)
     public GameObject roomPrefab4; // Préfabriqué de la salle 4 (avec spawn et porte de sortie)
     public GameObject player; // Joueur
-    public int width = 10;
-    public int height = 10;
+    public int width = 5;
+    public int height = 5;
     private Room[,] labyrinth;
 
     void Start()

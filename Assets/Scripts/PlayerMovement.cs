@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
         get { return sensitivity; }
         set { sensitivity = value; }
     }
+    public bool Has_Key_1;
+    public bool Has_Key_2;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();

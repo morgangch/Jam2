@@ -7,6 +7,7 @@ public class LabyrinthGenerator : MonoBehaviour
     public GameObject roomPrefab2; // Préfabriqué de la salle 2 (avec clé)
     public GameObject roomPrefab3; // Préfabriqué de la salle 3 (avec coffre)
     public GameObject roomPrefab4; // Préfabriqué de la salle 4 (avec spawn et porte de sortie)
+    public GameObject player; // Joueur
     public int width = 10;
     public int height = 10;
     private Room[,] labyrinth;
@@ -140,6 +141,10 @@ public class LabyrinthGenerator : MonoBehaviour
                         {
                             newRoom.transform.Find("Wall_" + walls[k]).gameObject.SetActive(false);
                         }
+                    }
+                    if (room.type[0])
+                    {
+                        player.transform.position = new Vector3(j, 1, i);
                     }
                 }
             }

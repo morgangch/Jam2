@@ -18,7 +18,6 @@ public class exit_door : MonoBehaviour
                     return;
                 }
                 if (player.GetComponent<PlayerMovement>().Has_Key_2) {
-                    key.SetActive(false);
                     win();
                 }
             }

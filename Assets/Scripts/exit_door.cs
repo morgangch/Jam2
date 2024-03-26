@@ -3,7 +3,6 @@ using UnityEngine.SceneManagement;
 
 public class exit_door : MonoBehaviour
 {
-    public bool hasKey = true; // Variable pour savoir si l'objet possède la clé
     public GameObject player; // Référence au GameObject du joueur
     public string interactKey = "e"; // Touche pour interagir
     public float interactionDistance = 2f; // Distance maximale d'interaction
@@ -18,7 +17,7 @@ public class exit_door : MonoBehaviour
                 if (hit.collider.gameObject != key) {
                     return;
                 }
-                if (hasKey) {
+                if (player.GetComponent<PlayerMovement>().Has_Key_2) {
                     key.SetActive(false);
                     win();
                 }

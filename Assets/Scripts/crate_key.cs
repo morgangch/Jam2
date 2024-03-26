@@ -19,7 +19,7 @@ public class crate_key : MonoBehaviour
                 }
                 // Vérifie si le rayon a touché cet objet
                 // Si l'objet a la clé et que le joueur n'a pas déjà la clé
-                if (hasKey && !player.GetComponent<PlayerMovement>().Has_Key_2) {
+                if (hasKey && !player.GetComponent<PlayerMovement>().Has_Key_2 && player.GetComponent<PlayerMovement>().Has_Key_1) {
                     // Fait disparaître l'objet
                     key.SetActive(false);
                     // Modifie la variable Has_Key du joueur en True

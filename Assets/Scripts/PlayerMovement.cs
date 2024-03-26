@@ -46,6 +46,10 @@ public class PlayerMovement : MonoBehaviour
         float mouseY = Input.GetAxis("Mouse Y");
         float jump = Input.GetAxis("Jump");
         bool sprint = Input.GetKey(KeyCode.LeftShift);
+        if (sprint)
+            moveSpeed = 10f;
+        else
+            moveSpeed = 5f;
 
         rotation.x += Input.GetAxis(xAxis) * sensitivity;
         rotation.y += Input.GetAxis(yAxis) * sensitivity;
@@ -53,11 +57,6 @@ public class PlayerMovement : MonoBehaviour
         var xQuat = Quaternion.AngleAxis(rotation.x, Vector3.up);
         var yQuat = Quaternion.AngleAxis(rotation.y, Vector3.left);
         transform.localRotation = xQuat * yQuat;
-        if (sprint)
-        {
-            playerMovement(moveHorizontal * 2, moveVertical * 2, jump);
-        }
-        else
-            playerMovement(moveHorizontal, moveVertical, jump);
+        playerMovement(moveHorizontal, moveVertical, jump);
     }
 }

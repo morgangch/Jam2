@@ -53,6 +53,6 @@ You can find us on the [Epitech jam 2](https://discord.gg/sKCW8xUMY3) discord se
 
 ## Contributions
 
-Contributions are done through Merge Requests on [Github Jam2](https://github.com/Thomasmass/Jam2.git)
+Contributions are made via merge requests on [Jam2](https://github.com/Thomasmass/Jam2.git) Github.
 
 Unity error and unanimity acceptance should be resolved before a Merge Request can be merged.

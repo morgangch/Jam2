@@ -3,21 +3,21 @@ using UnityEngine.UI;
 
 public class InGameUI : MonoBehaviour
 {
-    public GameObject playerObject; // Référence vers le GameObject Player
-    public Text infoText; // Référence vers le Text UI Component
+    public GameObject key1_Icon; // Référence vers l'objet Image représentant l'icône de la clé
+    public GameObject key2_Icon; // Référence vers l'objet Image représentant l'icône de la clé
+
+    void Start()
+    {
+        key1_Icon.SetActive(false);
+        key2_Icon.SetActive(false);
+    }
 
     void Update()
     {
-        if (playerObject != null && infoText != null)
-        {
-            // Récupérer la variable publique du GameObject Player et l'afficher dans le Text UI Component
-            PlayerMovement playerController = playerObject.GetComponent<PlayerMovement>();
-            if (playerController != null)
-            {
-                infoText.text = "Has Key 1: " + (playerController.Has_Key_1 ? "Yes" : "No");
-                infoText.text += "\nHas Key 2: " + (playerController.Has_Key_2 ? "Yes" : "No");
-                // Ajoutez d'autres informations sur le joueur ici en concaténant les chaînes de caractères
-            }
+        // Vérifier si le joueur a la clé 2 et activer ou désactiver l'icône en conséquence
+        if (key1_Icon && key2_Icon) {
+            key1_Icon.SetActive(PlayerPrefs.GetInt("has_key_1") == 1);
+            key2_Icon.SetActive(PlayerPrefs.GetInt("has_key_2") == 1);
         }
     }
 }

@@ -6,18 +6,17 @@ using System.Collections;
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenuUI;
-    private static bool _gameIsPaused;
     // Fonction pour trouver tous les GameObjects ayant un script particulier
     void Start()
     {
         pauseMenuUI.SetActive(false);
-        _gameIsPaused = false;
+        PlayerPrefs.SetInt("gameIsPaused", 0);
     }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (_gameIsPaused)
+            if (PlayerPrefs.GetInt("gameIsPaused") == 1)
                 Resume();
             else
                 Paused();
@@ -27,7 +26,7 @@ public class PauseMenu : MonoBehaviour
     {
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0;
-        _gameIsPaused = true;
+        PlayerPrefs.SetInt("gameIsPaused", 1);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
@@ -36,7 +35,7 @@ public class PauseMenu : MonoBehaviour
     {
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1;
-        _gameIsPaused = false;
+        PlayerPrefs.SetInt("gameIsPaused", 0);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }

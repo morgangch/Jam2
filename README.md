@@ -49,7 +49,7 @@ Avaible tasks:
 - Documentation
 
 \
-You can find us on the [Epitech jam 2](https://discord.gg/AEZDsDSDSD) discord server.
+You can find us on the [Epitech jam 2](https://discord.gg/sKCW8xUMY3) discord server.
 
 ## Contributions
 

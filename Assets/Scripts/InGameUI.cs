@@ -1,25 +1,23 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class KeyIconController : MonoBehaviour
+public class InGameUI : MonoBehaviour
 {
-    public GameObject playerObject; // Référence vers le GameObject Player
-    public GameObject keyIcon; // Référence vers l'objet Image représentant l'icône de la clé
-
-    private PlayerMovement playerMovement; // Référence vers le script PlayerMovement
+    public GameObject key1_Icon; // Référence vers l'objet Image représentant l'icône de la clé
+    public GameObject key2_Icon; // Référence vers l'objet Image représentant l'icône de la clé
 
     void Start()
     {
-        // Récupérer le composant PlayerMovement du GameObject Player
-        playerMovement = playerObject.GetComponent<PlayerMovement>();
+        key1_Icon.SetActive(false);
+        key2_Icon.SetActive(false);
     }
 
     void Update()
     {
         // Vérifier si le joueur a la clé 2 et activer ou désactiver l'icône en conséquence
-        if (playerMovement != null && keyIcon != null)
-        {
-            keyIcon.SetActive(playerMovement.Has_Key_2);
+        if (key1_Icon && key2_Icon) {
+            key1_Icon.SetActive(PlayerPrefs.GetInt("has_key_1") == 1);
+            key2_Icon.SetActive(PlayerPrefs.GetInt("has_key_2") == 1);
         }
     }
 }

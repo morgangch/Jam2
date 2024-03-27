@@ -8,12 +8,17 @@ public class LabyrinthGenerator : MonoBehaviour
     public GameObject roomPrefab3; // Préfabriqué de la salle 3 (avec coffre)
     public GameObject roomPrefab4; // Préfabriqué de la salle 4 (avec spawn et porte de sortie)
     public GameObject player; // Joueur
-    public int width = 5;
-    public int height = 5;
     private Room[,] labyrinth;
+    private int width;
+    private int height;
 
     void Start()
     {
+        width = PlayerPrefs.GetInt("width");
+        height = PlayerPrefs.GetInt("height");
+        PlayerPrefs.SetInt("has_key_1", 0);
+        PlayerPrefs.SetInt("has_key_2", 0);
+        PlayerPrefs.Save();
         InitializeLabyrinth();
         GenerateLabyrinth(0, 0);
         set_start_key_chest();
@@ -138,12 +143,14 @@ public class LabyrinthGenerator : MonoBehaviour
                     newRoom.SetActive(true);
                     for (int k = 0; k < 4; k++)
                     {
-                        if (room.walls[k]) {
+                        if (room.walls[k])
+                        {
                             newRoom.transform.Find("Wall_" + walls[k]).gameObject.SetActive(false);
                         }
                     }
-                    if (room.type[0]) {
-                        player.transform.position = new Vector3(j, 1, i);
+                    if (room.type[0])
+                    {
+                        player.transform.position = new Vector3(j * 9, 1, i * 9);
                     }
                 }
             }

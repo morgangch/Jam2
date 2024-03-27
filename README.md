@@ -22,7 +22,7 @@ The engine **Unity** is under its own Unity Technologies ApS licence.\
 **LPE** is available for the following platform:
 - [GNU/Linux] and affiliated
 
-[GNU/Linux]: https://www.itch.io/lpe/#download
+[GNU/Linux]: https://uploadnow.io/f/6dMHgZg
 
 ## Platform for editing
 
@@ -49,10 +49,10 @@ Avaible tasks:
 - Documentation
 
 \
-You can find us on the [Epitech jam 2](https://discord.gg/AEZDsDSDSD) discord server.
+You can find us on the [Epitech jam 2](https://discord.gg/sKCW8xUMY3) discord server.
 
 ## Contributions
 
-Contributions are done through Merge Requests on [Github Jam2](https://github.com/Thomasmass/Jam2.git)
+Contributions are made via merge requests on [Jam2](https://github.com/Thomasmass/Jam2.git) Github.
 
 Unity error and unanimity acceptance should be resolved before a Merge Request can be merged.
